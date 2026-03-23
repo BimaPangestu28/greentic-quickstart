@@ -1,0 +1,27 @@
+{
+  "$schema": "https://greentic.ai/schemas/wizard-answers.json",
+  "bundle_id": "greentic-quickstart",
+  "bundle_name": "Greentic Quickstart",
+  "locale": "en",
+
+  "app_packs": [
+    "oci://ghcr.io/bimapangestu28/greentic-quickstart/quickstart-app:latest"
+  ],
+
+  "extension_providers": {
+    "messaging": [
+      "webchat-gui",
+      "slack",
+      "teams",
+      "telegram",
+      "webex"
+    ],
+    "state": [
+      "memory"
+    ]
+  },
+
+  "features": {
+    "adaptive_cards": true
+  }
+}

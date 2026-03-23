@@ -1,0 +1,44 @@
+{
+  "$schema": "https://greentic.ai/schemas/setup-answers.json",
+  "$comment": "Template for private setup answers. Copy this file and fill in your secrets.",
+
+  "messaging-webchat-gui": {
+    "enabled": true
+  },
+
+  "messaging-slack": {
+    "enabled": true,
+    "bot_token": "xoxb-your-bot-token",
+    "slack_app_id": "A07XXXXXX",
+    "slack_signing_secret": "your-signing-secret",
+    "slack_configuration_token": "xoxe.xoxp-xxx"
+  },
+
+  "messaging-teams": {
+    "enabled": true,
+    "app_id": "your-teams-app-id",
+    "app_password": "your-teams-app-password",
+    "tenant_id": "your-azure-tenant-id"
+  },
+
+  "messaging-webex": {
+    "enabled": true,
+    "bot_token": "your-webex-bot-token",
+    "webhook_secret": "your-webhook-secret"
+  },
+
+  "events-webhook": {
+    "enabled": true,
+    "github_webhook_secret": "your-github-webhook-secret"
+  },
+
+  "aws": {
+    "region": "us-east-1",
+    "access_key_id": "AKIAXXXXXXXX",
+    "secret_access_key": "your-secret-key"
+  },
+
+  "github": {
+    "personal_access_token": "ghp_xxxxxxxxxxxx"
+  }
+}

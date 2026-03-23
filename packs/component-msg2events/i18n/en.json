@@ -1,0 +1,11 @@
+{
+  "msg2events.op.route.title": "Route to Events",
+  "msg2events.op.route.description": "Transform message and route to events flow",
+  "msg2events.op.extract.title": "Extract Event",
+  "msg2events.op.extract.description": "Extract event data from message",
+  "msg2events.op.validate.title": "Validate",
+  "msg2events.op.validate.description": "Validate message payload",
+  "msg2events.qa.setup.title": "Messaging to Events Setup",
+  "msg2events.qa.setup.default_flow": "Default Target Flow",
+  "msg2events.qa.setup.default_event_type": "Default Event Type"
+}

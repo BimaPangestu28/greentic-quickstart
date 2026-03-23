@@ -1,0 +1,38 @@
+# Secrets - NEVER commit
+private-answers.json
+setup-answers.json
+bundle-answers.json
+*.secret
+*.key
+
+# Runtime state
+state/
+logs/
+resolved/
+.greentic/
+tenants/
+
+# Downloaded providers (from OCI registry)
+providers/
+
+# Lock files (generated)
+bundle.lock.json
+
+# Build artifacts
+*.gtbundle
+dist/
+
+# Generated/resolved files
+*.resolve.json
+*.resolve.summary.json
+*.lock.cbor
+*.bak
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp

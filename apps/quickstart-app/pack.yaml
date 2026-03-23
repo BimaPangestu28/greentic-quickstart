@@ -1,0 +1,21 @@
+pack_id: quickstart-app
+version: 0.1.0
+kind: application
+publisher: BimaPangestu28
+components: []
+dependencies: []
+flows:
+- id: on_event
+  file: flows/on_event.ygtc
+  tags:
+  - events
+  entrypoints:
+  - webhook
+- id: on_message
+  file: flows/on_message.ygtc
+  tags:
+  - messaging
+  - default
+  entrypoints:
+  - default
+assets: []

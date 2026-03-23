@@ -1,0 +1,15 @@
+provider_id: component-msg2events
+version: 1
+title: Messaging to Events Setup
+questions:
+  - name: default_flow
+    title: Default Target Flow
+    kind: string
+    default: ""
+    help: "Default flow to route events to (leave empty for dynamic routing)"
+
+  - name: default_event_type
+    title: Default Event Type
+    kind: string
+    default: "message.text"
+    help: "Default event type (message.text, message.command, message.attachment, etc.)"

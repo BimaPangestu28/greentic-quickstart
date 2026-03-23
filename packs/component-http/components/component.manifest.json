@@ -1,0 +1,74 @@
+{
+  "id": "component-http",
+  "name": "component-http",
+  "version": "0.1.0",
+  "world": "greentic:component/component-v0-v6-v0@0.6.1",
+  "description": "HTTP Client Component - blocking and streaming HTTP requests",
+  "profiles": {
+    "default": "default",
+    "supported": ["default"]
+  },
+  "config_schema": {
+    "provider_config": {
+      "format": "json",
+      "path": ""
+    }
+  },
+  "secret_requirements": [],
+  "operations": [
+    {
+      "name": "request",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "url": { "type": "string", "format": "uri" },
+          "method": { "type": "string" },
+          "body": { "type": "object" },
+          "headers": { "type": "object" }
+        },
+        "required": ["url"]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "ok": { "type": "boolean" },
+          "status": { "type": "integer" },
+          "body": {},
+          "headers": { "type": "object" }
+        }
+      }
+    },
+    {
+      "name": "stream",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "url": { "type": "string", "format": "uri" },
+          "method": { "type": "string" },
+          "body": { "type": "object" },
+          "headers": { "type": "object" }
+        },
+        "required": ["url"]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "ok": { "type": "boolean" },
+          "status": { "type": "integer" },
+          "events": { "type": "array" },
+          "content": { "type": "string" }
+        }
+      }
+    }
+  ],
+  "capabilities": {
+    "wasi": {
+      "random": false,
+      "clocks": false
+    },
+    "host": {
+      "http-client": true,
+      "secrets-store": true
+    }
+  }
+}

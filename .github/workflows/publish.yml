@@ -1,0 +1,66 @@
+name: Publish Packs to GHCR
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/**'
+      - 'packs/**'
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_PREFIX: ${{ github.repository_owner }}/greentic-quickstart
+
+jobs:
+  publish-app-pack:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup GTC CLI
+        run: |
+          curl -fsSL https://get.greentic.ai | sh
+          echo "$HOME/.greentic/bin" >> $GITHUB_PATH
+
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and Push quickstart-app
+        run: |
+          cd apps/quickstart-app
+          gtc pack build .
+          gtc pack push ./dist/quickstart-app.gtpack \
+            oci://${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}/quickstart-app:latest
+          gtc pack push ./dist/quickstart-app.gtpack \
+            oci://${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}/quickstart-app:${{ github.sha }}
+
+      - name: Build and Push component-msg2events
+        run: |
+          cd packs/component-msg2events
+          gtc pack build .
+          gtc pack push ./dist/component-msg2events.gtpack \
+            oci://${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}/component-msg2events:latest
+
+      - name: Build and Push component-events2msg
+        run: |
+          cd packs/component-events2msg
+          gtc pack build .
+          gtc pack push ./dist/component-events2msg.gtpack \
+            oci://${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}/component-events2msg:latest
+
+      - name: Build and Push component-http
+        run: |
+          cd packs/component-http
+          gtc pack build .
+          gtc pack push ./dist/component-http.gtpack \
+            oci://${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}/component-http:latest

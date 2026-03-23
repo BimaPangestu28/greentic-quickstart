@@ -1,0 +1,9 @@
+{
+  "events2msg.op.route.title": "Route to Messaging",
+  "events2msg.op.route.description": "Route event to a messaging provider",
+  "events2msg.op.validate.title": "Validate",
+  "events2msg.op.validate.description": "Validate event payload",
+  "events2msg.qa.setup.title": "Events to Messaging Setup",
+  "events2msg.qa.setup.default_provider": "Default Messaging Provider",
+  "events2msg.qa.setup.default_channel": "Default Channel"
+}

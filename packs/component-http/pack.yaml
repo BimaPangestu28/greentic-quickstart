@@ -1,0 +1,23 @@
+pack_id: component-http
+version: 0.1.0
+kind: application
+publisher: Greentic
+components:
+- id: component-http
+  version: 0.1.0
+  world: greentic:component/component-v0-v6-v0@0.6.1
+  supports:
+  - componentconfig
+  profiles:
+    default: default
+    supported:
+    - default
+  capabilities:
+    wasi:
+      random: false
+      clocks: false
+    host: {}
+  wasm: components/component-http.wasm
+dependencies: []
+flows: []
+assets: []

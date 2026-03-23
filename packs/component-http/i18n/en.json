@@ -1,0 +1,11 @@
+{
+  "http.op.request.title": "HTTP Request",
+  "http.op.request.description": "Make an HTTP request",
+  "http.op.stream.title": "HTTP Stream",
+  "http.op.stream.description": "Stream HTTP response",
+  "http.op.validate.title": "Validate Config",
+  "http.op.validate.description": "Validate HTTP configuration",
+  "http.qa.setup.title": "HTTP Client Setup",
+  "http.qa.setup.default_timeout_ms": "Default Timeout (ms)",
+  "http.qa.setup.default_method": "Default HTTP Method"
+}

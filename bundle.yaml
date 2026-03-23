@@ -1,0 +1,70 @@
+schema_version: 1
+bundle_id: greentic-quickstart
+bundle_name: Greentic Quickstart
+locale: en
+mode: create
+advanced_setup: false
+app_packs:
+  - ./apps/quickstart-app
+  - ./packs/component-msg2events
+  - ./packs/component-events2msg
+  - ./packs/component-http
+app_pack_mappings:
+  - reference: ./apps/quickstart-app
+    scope: global
+  - reference: ./packs/component-msg2events
+    scope: global
+  - reference: ./packs/component-events2msg
+    scope: global
+  - reference: ./packs/component-http
+    scope: global
+extension_providers:
+  - oci://ghcr.io/greenticai/greentic-packs/messaging-slack:latest
+  - oci://ghcr.io/greenticai/greentic-packs/messaging-teams:latest
+  - oci://ghcr.io/greenticai/greentic-packs/messaging-telegram:latest
+  - oci://ghcr.io/greenticai/greentic-packs/messaging-webchat-gui:latest
+  - oci://ghcr.io/greenticai/greentic-packs/messaging-webex:latest
+  - oci://ghcr.io/greenticai/greentic-packs/state-memory:latest
+remote_catalogs: []
+hooks: []
+subscriptions: []
+capabilities: []
+setup_execution_intent: false
+export_intent: false
+
+# Runtime configuration
+tenant: demo
+team: default
+environment: dev
+
+# App routing
+apps:
+  quickstart-app:
+    enabled: true
+    pack: apps/quickstart-app
+    routing:
+      messaging:
+        default: on_message
+      events:
+        webhook: on_event
+
+# Provider configuration (paths resolved after gtc setup)
+providers:
+  messaging-webchat-gui:
+    pack: providers/messaging/messaging-webchat-gui.gtpack
+    setup_flow: setup_default
+  messaging-slack:
+    pack: providers/messaging/messaging-slack.gtpack
+    setup_flow: setup_default
+  messaging-telegram:
+    pack: providers/messaging/messaging-telegram.gtpack
+    setup_flow: setup_default
+  messaging-teams:
+    pack: providers/messaging/messaging-teams.gtpack
+    setup_flow: setup_default
+  messaging-webex:
+    pack: providers/messaging/messaging-webex.gtpack
+    setup_flow: setup_default
+  state-memory:
+    pack: providers/state/state-memory.gtpack
+    setup_flow: setup_default

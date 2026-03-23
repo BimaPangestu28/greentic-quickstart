@@ -1,0 +1,27 @@
+provider_id: component-http
+version: 1
+title: HTTP Client Setup
+questions:
+  - name: default_timeout_ms
+    title: Default Timeout (ms)
+    kind: string
+    default: "30000"
+    help: "Default request timeout in milliseconds"
+
+  - name: default_method
+    title: Default HTTP Method
+    kind: string
+    default: "POST"
+    help: "Default HTTP method (GET, POST, PUT, DELETE, etc.)"
+
+  - name: allow_insecure
+    title: Allow Insecure TLS
+    kind: boolean
+    default: false
+    help: "Allow connections to servers with invalid TLS certificates"
+
+  - name: follow_redirects
+    title: Follow Redirects
+    kind: boolean
+    default: true
+    help: "Automatically follow HTTP redirects"

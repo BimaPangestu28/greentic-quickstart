@@ -1,0 +1,51 @@
+{
+  "id": "component-events2msg",
+  "name": "component-events2msg",
+  "version": "0.1.0",
+  "world": "greentic:component/component-v0-v6-v0@0.6.1",
+  "description": "Events to Messaging Component - route events to messaging providers",
+  "profiles": {
+    "default": "default",
+    "supported": ["default"]
+  },
+  "config_schema": {
+    "provider_config": {
+      "format": "json",
+      "path": ""
+    }
+  },
+  "secret_requirements": [],
+  "operations": [
+    {
+      "name": "route",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "event": { "type": "object" },
+          "target_provider": { "type": "string" },
+          "message_template": { "type": "string" }
+        },
+        "required": ["event"]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "ok": { "type": "boolean" },
+          "message_id": { "type": "string" },
+          "error": { "type": "string" }
+        }
+      }
+    }
+  ],
+  "capabilities": {
+    "wasi": {
+      "random": false,
+      "clocks": false
+    },
+    "host": {
+      "http-client": true,
+      "secrets-store": true,
+      "logger-api": true
+    }
+  }
+}

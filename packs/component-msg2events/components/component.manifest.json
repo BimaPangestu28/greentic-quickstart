@@ -1,0 +1,69 @@
+{
+  "id": "component-msg2events",
+  "name": "component-msg2events",
+  "version": "0.1.0",
+  "world": "greentic:component/component-v0-v6-v0@0.6.1",
+  "description": "Messaging to Events Component - transform messages to event payloads",
+  "profiles": {
+    "default": "default",
+    "supported": ["default"]
+  },
+  "config_schema": {
+    "provider_config": {
+      "format": "json",
+      "path": ""
+    }
+  },
+  "secret_requirements": [],
+  "operations": [
+    {
+      "name": "route",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "message": { "type": "object" },
+          "event_type": { "type": "string" },
+          "target_flow": { "type": "string" }
+        },
+        "required": ["message"]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "ok": { "type": "boolean" },
+          "event": { "type": "object" },
+          "error": { "type": "string" }
+        }
+      }
+    },
+    {
+      "name": "extract",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "message": { "type": "object" }
+        },
+        "required": ["message"]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "ok": { "type": "boolean" },
+          "event_data": { "type": "object" },
+          "error": { "type": "string" }
+        }
+      }
+    }
+  ],
+  "capabilities": {
+    "wasi": {
+      "random": false,
+      "clocks": false
+    },
+    "host": {
+      "http-client": true,
+      "secrets-store": true,
+      "logger-api": true
+    }
+  }
+}

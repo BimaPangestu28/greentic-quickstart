@@ -1,0 +1,88 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.3",
+  "greentic": {
+    "cardId": "welcome",
+    "flow": "on_message"
+  },
+  "body": [
+    {
+      "type": "Container",
+      "style": "emphasis",
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "Image",
+                  "url": "https://raw.githubusercontent.com/microsoft/adaptive-cards/main/assets/ic_support.png",
+                  "size": "Medium",
+                  "altText": "Helpdesk"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Helpdesk Bot",
+                  "size": "Large",
+                  "weight": "Bolder",
+                  "color": "Accent"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "Your IT Support Assistant",
+                  "spacing": "None",
+                  "isSubtle": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "I can help you create and track support tickets. Here's what you can do:",
+      "wrap": true,
+      "spacing": "Medium"
+    },
+    {
+      "type": "FactSet",
+      "facts": [
+        {
+          "title": "Create Ticket",
+          "value": "/ticket <describe your issue>"
+        },
+        {
+          "title": "Example",
+          "value": "/ticket My laptop shows error code 500"
+        }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "You'll receive real-time updates when your ticket status changes.",
+      "wrap": true,
+      "spacing": "Medium",
+      "isSubtle": true
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Create New Ticket",
+      "data": {
+        "action": "create_ticket"
+      }
+    }
+  ]
+}

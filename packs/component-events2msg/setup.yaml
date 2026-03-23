@@ -1,0 +1,15 @@
+provider_id: component-events2msg
+version: 1
+title: Events to Messaging Setup
+questions:
+  - name: default_provider
+    title: Default Messaging Provider
+    kind: string
+    default: "webchat"
+    help: "Default messaging provider (telegram, slack, teams, webchat, whatsapp, webex)"
+
+  - name: default_channel
+    title: Default Channel
+    kind: string
+    default: ""
+    help: "Default channel/conversation ID (leave empty for dynamic routing)"
