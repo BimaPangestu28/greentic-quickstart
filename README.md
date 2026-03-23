@@ -53,8 +53,9 @@ For automated bundle creation from published packs:
 ### 1. Create Bundle from Wizard
 
 ```bash
-# Create bundle from wizard answers
-gtc wizard --answers https://raw.githubusercontent.com/BimaPangestu28/greentic-quickstart/main/wizard-answers.json
+# Download wizard answers and create bundle
+curl -fsSL https://raw.githubusercontent.com/BimaPangestu28/greentic-quickstart/main/wizard-answers.json -o wizard-answers.json
+gtc wizard --answers wizard-answers.json --yes --non-interactive
 ```
 
 This creates: `greentic-quickstart.gtbundle/`
