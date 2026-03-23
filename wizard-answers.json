@@ -1,27 +1,27 @@
 {
-  "$schema": "https://greentic.ai/schemas/wizard-answers.json",
-  "bundle_id": "greentic-quickstart",
-  "bundle_name": "Greentic Quickstart",
+  "wizard_id": "greentic-bundle.wizard.run",
+  "schema_id": "greentic-bundle.wizard.answers",
+  "schema_version": "1.0.0",
   "locale": "en",
-
-  "app_packs": [
-    "oci://ghcr.io/bimapangestu28/greentic-quickstart/quickstart-app:latest"
-  ],
-
-  "extension_providers": {
-    "messaging": [
-      "webchat-gui",
-      "slack",
-      "teams",
-      "telegram",
-      "webex"
+  "answers": {
+    "mode": "create",
+    "bundle_id": "greentic-quickstart",
+    "bundle_name": "Greentic Quickstart",
+    "output_dir": "./greentic-quickstart.gtbundle",
+    "app_packs": [
+      "oci://ghcr.io/bimapangestu28/greentic-quickstart/quickstart-app:latest"
     ],
-    "state": [
-      "memory"
-    ]
+    "extension_providers": [
+      "oci://ghcr.io/greenticai/greentic-packs/messaging-webchat-gui:latest",
+      "oci://ghcr.io/greenticai/greentic-packs/messaging-slack:latest",
+      "oci://ghcr.io/greenticai/greentic-packs/messaging-teams:latest",
+      "oci://ghcr.io/greenticai/greentic-packs/messaging-telegram:latest",
+      "oci://ghcr.io/greenticai/greentic-packs/messaging-webex:latest",
+      "oci://ghcr.io/greenticai/greentic-packs/state-memory:latest"
+    ],
+    "advanced_setup": false,
+    "setup_execution_intent": false,
+    "export_intent": false
   },
-
-  "features": {
-    "adaptive_cards": true
-  }
+  "locks": {}
 }
