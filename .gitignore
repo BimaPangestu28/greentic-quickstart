@@ -20,7 +20,7 @@ bundle.lock.json
 
 # Build artifacts
 *.gtbundle
-dist/
+# Note: apps/*/dist and packs/*/dist are tracked for CI publishing
 
 # Generated/resolved files
 *.resolve.json

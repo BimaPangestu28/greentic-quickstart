@@ -5,7 +5,7 @@ publisher: Greentic
 components:
 - id: component-msg2events
   version: 0.1.0
-  world: greentic:component/component-v0-v6-v0@0.6.1
+  world: greentic:component/component@0.6.0
   supports:
   - componentconfig
   profiles:

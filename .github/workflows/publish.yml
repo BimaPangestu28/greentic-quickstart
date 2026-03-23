@@ -23,44 +23,37 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup GTC CLI
-        run: |
-          curl -fsSL https://get.greentic.ai | sh
-          echo "$HOME/.greentic/bin" >> $GITHUB_PATH
+      - name: Setup ORAS
+        uses: oras-project/setup-oras@v1
+        with:
+          version: 1.2.0
 
       - name: Login to GHCR
-        uses: docker/login-action@v3
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build and Push quickstart-app
         run: |
-          cd apps/quickstart-app
-          gtc pack build .
-          gtc pack push ./dist/quickstart-app.gtpack \
-            oci://${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}/quickstart-app:latest
-          gtc pack push ./dist/quickstart-app.gtpack \
-            oci://${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}/quickstart-app:${{ github.sha }}
+          echo "${{ secrets.GITHUB_TOKEN }}" | oras login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      - name: Build and Push component-msg2events
+      - name: Push quickstart-app
         run: |
-          cd packs/component-msg2events
-          gtc pack build .
-          gtc pack push ./dist/component-msg2events.gtpack \
-            oci://${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}/component-msg2events:latest
+          cd apps/quickstart-app/dist
+          oras push ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}/quickstart-app:latest \
+            quickstart-app.gtpack:application/vnd.greentic.pack.v1+tar
+          oras push ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}/quickstart-app:${{ github.sha }} \
+            quickstart-app.gtpack:application/vnd.greentic.pack.v1+tar
 
-      - name: Build and Push component-events2msg
+      - name: Push component-msg2events
         run: |
-          cd packs/component-events2msg
-          gtc pack build .
-          gtc pack push ./dist/component-events2msg.gtpack \
-            oci://${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}/component-events2msg:latest
+          cd packs/component-msg2events/dist
+          oras push ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}/component-msg2events:latest \
+            component-msg2events.gtpack:application/vnd.greentic.pack.v1+tar
 
-      - name: Build and Push component-http
+      - name: Push component-events2msg
         run: |
-          cd packs/component-http
-          gtc pack build .
-          gtc pack push ./dist/component-http.gtpack \
-            oci://${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}/component-http:latest
+          cd packs/component-events2msg/dist
+          oras push ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}/component-events2msg:latest \
+            component-events2msg.gtpack:application/vnd.greentic.pack.v1+tar
+
+      - name: Push component-http
+        run: |
+          cd packs/component-http/dist
+          oras push ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}/component-http:latest \
+            component-http.gtpack:application/vnd.greentic.pack.v1+tar

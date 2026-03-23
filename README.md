@@ -2,7 +2,7 @@
 
 A multi-channel chatbot demo using Greentic platform. Supports WebChat, Slack, Teams, Telegram, and Webex.
 
-## Quick Start
+## Quick Start (Local Development)
 
 ### 1. Install GTC CLI
 
@@ -14,7 +14,43 @@ curl -fsSL https://get.greentic.ai | sh
 brew install greenticai/tap/gtc
 ```
 
-### 2. Create Bundle
+### 2. Clone and Setup
+
+```bash
+# Clone the repo
+git clone https://github.com/BimaPangestu28/greentic-quickstart.git
+cd greentic-quickstart
+
+# Download provider packs (first time only)
+gtc setup .
+
+# Copy and edit your secrets
+cp private-answers-template.json private-answers.json
+# Edit private-answers.json with your credentials
+
+# Run setup with your secrets
+gtc setup --answers private-answers.json .
+```
+
+### 3. Run
+
+```bash
+# Start with Cloudflare tunnel (public URL)
+gtc start .
+
+# Or with ngrok instead
+gtc start . --cloudflared off --ngrok on
+```
+
+The WebChat GUI is available at the public URL shown in the console.
+
+---
+
+## Alternative: Wizard Flow (OCI Registry)
+
+For automated bundle creation from published packs:
+
+### 1. Create Bundle from Wizard
 
 ```bash
 # Create bundle from wizard answers
@@ -23,7 +59,7 @@ gtc wizard --answers https://raw.githubusercontent.com/BimaPangestu28/greentic-q
 
 This creates: `greentic-quickstart.gtbundle/`
 
-### 3. Setup Secrets
+### 2. Setup Secrets
 
 ```bash
 # Generate private answers template
@@ -33,7 +69,7 @@ gtc setup ./greentic-quickstart.gtbundle --dry-run --emit-answers private-answer
 gtc setup ./greentic-quickstart.gtbundle --answers private-answers.json
 ```
 
-### 4. Run
+### 3. Run
 
 ```bash
 # Start with Cloudflare tunnel (public URL)
